@@ -5,9 +5,9 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import {MatTableDataSource} from '@angular/material/table';
 
 import {Employee} from "../models/employee";
-import {AppComponent} from "../app.component";
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -54,18 +54,18 @@ export class EmployeeServiceService {
 
   //function for getting all the employees through backend call
   public getAllEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(AppComponent.API_URL+"/allEmployee");
+    return this.http.get<Employee[]>(environment.API_URL+"/allEmployee");
   }
 
   //inserting the new employee in db thorugh backend logic
   public insertEmployee(employee) {
 
-    return this.http.post(AppComponent.API_URL+"/employeeSave",employee);
+    return this.http.post(environment.API_URL+"/employeeSave",employee);
   };
   
   //function for deleting the new employee
   deleteEmployee(employee) {
-    return this.http.post(AppComponent.API_URL+"/deleteEmployee",employee);
+    return this.http.post(environment.API_URL+"/deleteEmployee",employee);
   }
 
   //entering the prefilled employee data before editing employee
